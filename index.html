@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>College Packing List</title>
+  <style>
+    body {
+
+      font-family: Arial, sans-serif;
+      background-color: #ffe6f0;
+      color: #333;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #d63384;
+    }
+    .grid-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+    .category {
+      background-color: #fff0f5;
+      border: 2px solid #d63384;
+      border-radius: 10px;
+      padding: 15px;
+      width: 300px;
+    }
+    .category h2 {
+      text-align: center;
+      color: #d63384;
+    }
+    .item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .item input[type="checkbox"] {
+      margin-right: 10px;
+      accent-color: #d63384;
+    }
+    .checkmark {
+      color: #ff69b4;
+      font-size: 18px;
+      margin-right: 10px;
+    }
+    .support-section {
+      margin-top: 50px;
+      background-color: #fff0f5;
+      padding: 20px;
+      border-radius: 10px;
+      border: 2px solid #d63384;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+    .support-section p {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    .support-section a {
+      color: #d63384;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .support-section a:hover {
+      text-decoration: underline;
+    }
+    .testimonial-boxes {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .testimonial {
+      background-color: #fff;
+      border: 1px solid #d63384;
+      border-radius: 10px;
+      padding: 10px 15px;
+      font-style: italic;
+      color: #d63384;
+      min-width: 180px; 
+    }
+    .links {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .links a {
+      display: inline-block;
+      margin: 5px 10px;
+      color: #d63384;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .links a:hover {
+      text-decoration: underline;
+    }
+.popup-message {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #d63384;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+} 
+/* ===== MODAL OVERLAY ===== */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+/* ===== MODAL BOX ===== */
+.modal {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  width: 300px;
+  text-align: center;
+}
+
+.modal h2 {
+  color: #d63384; /* match your theme */
+}
+
+.modal input {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.modal button {
+  padding: 10px 15px;
+  margin: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.start-btn {
+  background: #d63384;
+  color: white;
+}
+
+/* Hide your actual page initially */
+#content {
+  display: none;
+}
+  </style>
+
+</head>
+
+
+<body>
+
+<!-- POPUP FIRST -->
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <h2>Welcome to the Packlist!</h2>
+    <p>Let's personalize your packlist ✨</p>
+
+    <input type="text" id="nameInput" placeholder="Enter your name">
+    <input type="color" id="colorInput">
+
+    <br>
+
+    <button onclick="startPage()" class="start-btn">Let's Go!</button>
+  </div>
+</div>
+
+<!-- EVERYTHING ELSE WRAPPED -->
+<div id="content">
+
+  <h1 id= "title">Welcome to Student's College Packing List</h1>
+
+  <div class="grid-wrap">
+    <div class="category">
+      <h2>Bathroom</h2>
+      <div class="item"><input type="checkbox">Towels + Towel robes </div>
+      <div class="item"><input type="checkbox">Body Lotion & Body wash</div>
+      <div class="item"><input type="checkbox">Toothbrush & Toothpaste</div>
+      <div class="item"><input type="checkbox">Dental Floss</div>
+      <div class="item"><input type="checkbox">Mouthwash</div>
+      <div class="item"><input type="checkbox">Shower Shoes</div>
+      <div class="item"><input type="checkbox">Shower Curtain</div>
+      <div class="item"><input type="checkbox">Bathroom Rug</div>
+      <div class="item"><input type="checkbox">Deodorants</div>
+      <div class="item"><input type="checkbox">Perfumes</div>
+      <div class="item"><input type="checkbox">Door Hooks</div>
+      
+    </div>
+
+    <div class="category">
+      <h2>Health & Skincare</h2>
+      <div class="item"><input type="checkbox">Cleanser</div>
+      <div class="item"><input type="checkbox">Toner</div>
+      <div class="item"><input type="checkbox">Moisturizer</div>
+      <div class="item"><input type="checkbox">Sunscreen</div>
+      <div class="item"><input type="checkbox">Serum</div>
+      <div class="item"><input type="checkbox">Cotton pads</div>
+      <div class="item"><input type="checkbox">Cold/Flu Meds</div>
+      <div class="item"><input type="checkbox">First Aid Bandage</div>
+      <div class="item"><input type="checkbox">Pain reliever</div>
+      <div class="item"><input type="checkbox">Sanitary Pads</div>
+      <div class="item"><input type="checkbox">Pant Liners</div>
+    </div>
+
+    <div class="category">
+      <h2>Cleaning Essentials</h2>
+      <div class="item"><input type="checkbox">Disinfectant Wipes</div>
+      <div class="item"><input type="checkbox">Laundry Detergent</div>
+      <div class="item"><input type="checkbox">Dryer Sheets</div>
+      <div class="item"><input type="checkbox">Laundry Scents</div>
+      <div class="item"><input type="checkbox">Broom & Dustpan</div>
+      <div class="item"><input type="checkbox">Floor Mop & Wipes</div>
+      <div class="item"><input type="checkbox">Trash Bags</div>
+      <div class="item"><input type="checkbox">Laundry Bag</div>
+      <div class="item"><input type="checkbox">Glass Wipes</div>
+      <div class="item"><input type="checkbox">Trash Can + Trash bags</div>
+      <div class="item"><input type="checkbox">Wet Wipes + Sanitizers</div>
+      <div class="item"><input type="checkbox">Vacuum Cleaner</div>
+    </div>
+
+    <div class="category">
+      <h2>Hair</h2>
+      <div class="item"><input type="checkbox">Hair combs + Brush</div>
+      <div class="item"><input type="checkbox">Bonnets</div>
+      <div class="item"><input type="checkbox">Hair Dryer</div>
+      <div class="item"><input type="checkbox">Shampoo & Conditioner</div>
+      <div class="item"><input type="checkbox">Hair Gel + Edge Controller</div>
+      <div class="item"><input type="checkbox">Hair Oil</div>
+      <div class="item"><input type="checkbox">Claw clips & Scrunchies</div>
+      <div class="item"><input type="checkbox">Blow dryer</div>
+      <div class="item"><input type="checkbox">Hair Curler or Flat Iron</div>
+      <div class="item"><input type="checkbox">Hair Extensions</div>
+    </div>
+
+    <div class="category">
+      <h2>Bedroom</h2>
+      <div class="item"><input type="checkbox">Sheets (Twin XL) & Covers</div>
+      <div class="item"><input type="checkbox">Throw Blanket</div>
+      <div class="item"><input type="checkbox">Thick Blanket</div>
+      <div class="item"><input type="checkbox">Pillows</div>
+      <div class="item"><input type="checkbox">Desk Lamp</div>
+      <div class="item"><input type="checkbox">Alarm Clock</div>
+      <div class="item"><input type="checkbox">Desk Mirror</div>
+      <div class="item"><input type="checkbox">Dressing Mirror</div>
+    </div>
+
+    <div class="category">
+      <h2>Study Essentials</h2>
+      <div class="item"><input type="checkbox">Notebooks</div>
+      <div class="item"><input type="checkbox">Headphones</div>
+      <div class="item"><input type="checkbox">Pens & Highlighters</div>
+      <div class="item"><input type="checkbox">Laptop & Charger</div>
+      <div class="item"><input type="checkbox">Backpack & Totebag</div>
+      <div class="item"><input type="checkbox">Sticky Notes</div>
+      <div class="item"><input type="checkbox">Water Bottle</div>
+      <div class="item"><input type="checkbox">Calculator</div>
+      <div class="item"><input type="checkbox">Umbrella</div>
+      <div class="item"><input type="checkbox">File Organizer</div>
+    </div>
+
+    <div class="category">
+      <h2>Clothing</h2>
+      <div class="item"><input type="checkbox">Sweatpants</div>
+      <div class="item"><input type="checkbox">T-shirts & Tank Tops, Shirts</div>
+      <div class="item"><input type="checkbox">Dresses</div>
+	<div class="item"><input type="checkbox">Jackets & Blazers</div>
+      <div class="item"><input type="checkbox">Pajamas</div>
+      <div class="item"><input type="checkbox">Shoes (Flats, Sneakers, Crocs, Heels, boots, uggs)</div>
+      <div class="item"><input type="checkbox">Undergarments & Socks</div>
+      <div class="item"><input type="checkbox">Hangers</div>
+    </div>
+
+    <div class="category">
+      <h2>Culinary</h2>
+      <div class="item"><input type="checkbox">Lunch Box</div>
+      <div class="item"><input type="checkbox">1–2 Spoons/Knives/Forks</div>
+      <div class="item"><input type="checkbox">Paper Towels</div>
+      <div class="item"><input type="checkbox">Food Storage Containers</div>
+      <div class="item"><input type="checkbox">Microwave</div>
+      <div class="item"><input type="checkbox">Mini Fridge</div>
+    </div>
+
+    <div class="category">
+      <h2>Extras</h2>
+      <div class="item"><input type="checkbox">Phone Tripod</div>
+      <div class="item"><input type="checkbox">Hair Mannequin</div>
+      <div class="item"><input type="checkbox">Nail Kit</div>
+      <div class="item"><input type="checkbox">Jewelries</div>
+      <div class="item"><input type="checkbox">Jewelry Organizer</div>
+      <div class="item"><input type="checkbox">Makeup Kit + Organizer</div>
+      <div class="item"><input type="checkbox">TV</div>
+      <div class="item"><input type="checkbox">Alexa!!</div>
+    </div>
+  </div>
+
+  <div class="support-section">
+    <p>
+      <strong>A Little Support Goes a Long Way 💕</strong><br />
+      Hey, as you prepare to move into college and step into this exciting new chapter, I'm rooting for you. I wish you  all the best and I'd be right here cheering for you. <br/>
+      Yours Sincerely,<br/>
+<br/>
+      <strong>M'ayuk Ketchen-Obi</strong>
+    </p>
+</div> <!-- the end!-->
+
+<script>
+  // Wait until the page is fully loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+    // Load saved checkbox states from localStorage
+    checkboxes.forEach((cb, index) => {
+      const saved = localStorage.getItem('checkbox-' + index);
+      if (saved === 'true') {
+        cb.checked = true;
+      }
+
+      // Save checkbox state whenever it changes
+      cb.addEventListener('change', () => {
+        localStorage.setItem('checkbox-' + index, cb.checked);
+      });
+    });
+  });
+</script>
+
+<script>
+  // NEW personalization logic
+  function startPage() {
+    let name = document.getElementById("nameInput").value;
+    let color = document.getElementById("colorInput").value;
+
+    if (name === "") name = "Guest";
+    if (color === "") color = "#ffe6f0";
+
+    document.body.style.backgroundColor = color;
+
+    document.getElementById("title").innerText =
+      "Welcome to " + name + "'s Packlist";
+
+    document.getElementById("overlay").style.display = "none";
+    document.getElementById("content").style.display = "block";
+  }
+</script>
+  
+
+</body>
+</html>
+
+
+
+
+
